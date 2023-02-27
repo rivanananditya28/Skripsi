@@ -1,0 +1,692 @@
+Skip to content
+Why GitHub? 
+Team
+Enterprise
+Explore 
+Marketplace
+Pricing 
+Search
+
+Sign in
+Sign up
+Sams98
+/
+OnesimBus
+00
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+OnesimBus/the-one-pitt-master/default_settings_coba_1.txt
+@Sams98
+Sams98 Selesai
+Latest commit 4ba348b 7 days ago
+ History
+ 1 contributor
+657 lines (568 sloc)  17.6 KB
+  
+#
+# Default settings for the simulation
+#
+
+## Scenario settings
+Scenario.name = scenario_TJ_3 Greedy
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+# 43200s == 12h
+# 64800s == 18h
+Scenario.endTime = 43200
+
+## Interface-specific settings:
+# type : which interface class the interface belongs to
+# For different types, the sub-parameters are interface-specific
+# For SimpleBroadcastInterface, the parameters are:
+# transmitSpeed : transmit speed of the interface (bytes per second) 
+# transmitRange : range of the interface (meters)
+
+# interface for 802.15.4 link profile
+w802-15-4Interface.type = SimpleBroadcastInterface
+#250kbps = 32kBps
+w802-15-4Interface.transmitSpeed = 32k
+w802-15-4Interface.transmitRange = 30
+
+# interface for 802.11a link profile
+w802-11aInterface.type = SimpleBroadcastInterface
+w802-11aInterface.transmitSpeed = 100M
+w802-11aInterface.transmitRange = 5000
+
+# interface for 802.11b link profile
+w802-11bInterface.type = SimpleBroadcastInterface
+w802-11bInterface.transmitSpeed = 384k
+w802-11bInterface.transmitRange = 50
+
+#interface for 802.11p link profile
+w802-11pInterface.type = SimpleBroadcastInterface
+w802-11pInterface.transmitSpeed = 896k
+w802-11pInterface.transmitRange = 300
+
+Scenario.nrofHostGroups = 63
+
+## Group-specific settings:
+# groupID : Group's identifier. Used as the prefix of host names
+# nrofHosts: number of hosts in the group
+# movementModel: movement model of the hosts (valid class name from movement package)
+# waitTime: minimum and maximum wait times (seconds) after reaching destination
+# speed: minimum and maximum speeds (m/s) when moving on a path
+# bufferSize: size of the message buffer (bytes)
+# router: router used to route messages (valid class name from routing package)
+# activeTimes: Time intervals when the nodes in the group are active (start1, end1, start2, end2, ...)
+# msgTtl : TTL (minutes) of the messages created by this host group, default=infinite
+
+## Group and movement model specific settings
+# pois: Points Of Interest indexes and probabilities (poiIndex1, poiProb1, poiIndex2, poiProb2, ... )
+#       for ShortestPathMapBasedMovement
+# okMaps : which map nodes are OK for the group (map file indexes), default=all 
+#          for all MapBasedMovent models
+# routeFile: route's file path - for MapRouteMovement
+# routeType: route's type - for MapRouteMovement
+
+
+# Common settings for all groups
+#Group.movementModel = MapRouteMovementWithStop
+Group.movementModel = MapRouteMovementWithStop
+
+#Group.router = GeoOppsRouting
+
+Group.router = DecisionEngineRouter
+DecisionEngineRouter.decisionEngine = SprayAndLocate
+
+Group.bufferSize = 40M
+Group.waitTime = 0, 0
+Group.nrofInterfaces = 3
+Group.interface1 = w802-11pInterface
+Group.interface2 = w802-11bInterface
+Group.interface3 = w802-15-4Interface
+# Kecepatan Bus Transjogja
+Group.speed = 3, 8
+# Message TTL of 120 minutes (2 hours)
+Group.msgTtl =  43200
+Group.stopFile = data/Stop3Points.txt
+Group.stopTime = 5, 30
+
+Group.nrofHosts = 162
+
+#Group destination - 1 node
+Group1.groupID = d
+Group1.movementModel = StationaryMovement
+Group1.nodeLocation = 9647,1620
+Group1.nrofHosts = 1
+Group1.bufferSize = 1G
+Group1.nrofInterfaces = 1
+Group1.interface1 = w802-11pInterface
+ 
+#Group2.groupID = d
+#Group2.movementModel = StationaryMovement
+#Group2.nodeLocation = 9647,1620
+#Group2.nrofHosts = 1
+#Group2.bufferSize = 1G
+#Group2.nrofInterfaces = 1
+#Group2.interface1 = w802-11pInterface
+
+#Group of terminal - 7 nodes (1-7 node)
+#Bandara
+Group2.groupID = t
+Group2.bufferSize = 0k
+Group2.movementModel = StationaryMovement
+Group2.nodeLocation = 13464, 4529
+Group2.nrofHosts = 1
+Group2.nrofInterfaces = 1
+Group2.interface1 = w802-11pInterface
+#Prambanan
+Group3.groupID = t
+Group3.bufferSize = 0k
+Group3.movementModel = StationaryMovement
+Group3.nodeLocation = 19266, 1345
+Group3.nrofHosts = 1
+Group3.nrofInterfaces = 1
+Group3.interface1 = w802-11pInterface
+#CondongCatur
+Group4.groupID = t
+Group4.bufferSize = 1G
+Group4.movementModel = StationaryMovement
+Group4.nodeLocation = 8959, 1433
+Group4.nrofHosts = 1
+Group4.nrofInterfaces = 1
+Group4.interface1 = w802-11pInterface
+#Jombor
+Group5.groupID = t
+Group5.bufferSize = 1G
+Group5.movementModel = StationaryMovement
+Group5.nodeLocation = 5129, 388
+Group5.nrofHosts = 1
+Group5.nrofInterfaces = 1
+Group5.interface1 = w802-11pInterface
+#ParkNRideGamping
+Group6.groupID = t
+Group6.bufferSize = 0k
+Group6.movementModel = StationaryMovement
+Group6.nodeLocation = 37, 6524
+Group6.nrofHosts = 1
+Group6.nrofInterfaces = 1
+Group6.interface1 = w802-11pInterface
+#Ngabean
+Group7.groupID = t
+Group7.bufferSize = 0k
+Group7.movementModel = StationaryMovement
+Group7.nodeLocation = 4605, 6628
+Group7.nrofHosts = 1
+Group7.nrofInterfaces = 1
+Group7.interface1 = w802-11pInterface
+#Giwangan
+Group8.groupID = t
+Group8.bufferSize = 1G
+Group8.movementModel = StationaryMovement
+Group8.nodeLocation = 8586, 10037
+Group8.nrofHosts = 1
+Group8.nrofInterfaces = 1
+Group8.interface1 = w802-11pInterface
+
+#Group of Sensor - 38 nodes (8-
+Group9.groupID = s
+Group9.bufferSize = 64k
+Group9.movementModel = StationaryMovement
+Group9.nodeLocation = 1900,3698
+Group9.nrofHosts = 1
+Group9.nrofInterfaces = 1
+Group9.interface1 = w802-15-4Interface
+
+Group10.groupID = s
+Group10.bufferSize = 10M
+Group10.movementModel = StationaryMovement
+Group10.nodeLocation = 1175,6305
+Group10.nrofHosts = 1
+Group10.nrofInterfaces = 1
+#Group10.msgTtl = 300
+Group10.interface1 = w802-11bInterface
+
+Group11.groupID = s
+Group11.bufferSize = 64k
+Group11.movementModel = StationaryMovement
+Group11.nodeLocation = 1510,8715
+Group11.nrofHosts = 1
+Group11.nrofInterfaces = 1
+Group11.interface1 = w802-15-4Interface
+
+Group12.groupID = s
+Group12.bufferSize = 10M
+Group12.movementModel = StationaryMovement
+Group12.nodeLocation = 5640,10200
+Group12.nrofHosts = 1
+Group12.nrofInterfaces = 1
+#Group12.msgTtl = 300
+#Group13.interface1 = w802-15-4Interface
+Group12.interface1 = w802-11bInterface
+
+Group13.groupID = s
+Group13.bufferSize = 10M
+Group13.movementModel = StationaryMovement
+Group13.nodeLocation = 5955,7887
+Group13.nrofHosts = 1
+Group13.nrofInterfaces = 1
+#Group13.msgTtl = 300
+#Group14.interface1 = w802-15-4Interface
+Group13.interface1 = w802-11bInterface
+
+Group14.groupID = s
+Group14.bufferSize = 10M
+Group14.movementModel = StationaryMovement
+Group14.nodeLocation = 6799,7995
+Group14.nrofHosts = 1
+Group14.nrofInterfaces = 1
+#Group14.msgTtl = 300
+#Group15.interface1 = w802-15-4Interface
+Group14.interface1 = w802-11bInterface
+
+Group15.groupID = s
+Group15.bufferSize = 10M
+Group15.movementModel = StationaryMovement
+Group15.nodeLocation = 7635,8125
+Group15.nrofHosts = 1
+Group15.nrofInterfaces = 1
+#Group15.msgTtl = 300
+#Group16.interface1 = w802-15-4Interface
+Group15.interface1 = w802-11bInterface
+
+Group16.groupID = s
+Group16.bufferSize = 64k
+Group16.movementModel = StationaryMovement
+Group16.nodeLocation = 8483,10278
+Group16.nrofHosts = 1
+Group16.nrofInterfaces = 1
+Group16.interface1 = w802-15-4Interface
+
+Group17.groupID = s
+Group17.bufferSize = 64k
+Group17.movementModel = StationaryMovement
+Group17.nodeLocation = 5541,6400
+Group17.nrofHosts = 1
+Group17.nrofInterfaces = 1
+Group17.interface1 = w802-15-4Interface
+
+Group18.groupID = s
+Group18.bufferSize = 10M
+Group18.movementModel = StationaryMovement
+Group18.nodeLocation = 8897,6490
+Group18.nrofHosts = 1
+Group18.nrofInterfaces = 1
+#Group18.msgTtl = 300
+#Group19.interface1 = w802-15-4Interface
+Group18.interface1 = w802-11bInterface
+
+Group19.groupID = s
+Group19.bufferSize = 64k
+Group19.movementModel = StationaryMovement
+Group19.nodeLocation = 10505,6092
+Group19.nrofHosts = 1
+Group19.nrofInterfaces = 1
+Group19.interface1 = w802-15-4Interface
+
+Group20.groupID = s
+Group20.bufferSize = 64k
+Group20.movementModel = StationaryMovement
+Group20.nodeLocation = 10420,7578
+Group20.nrofHosts = 1
+Group20.nrofInterfaces = 1
+Group20.interface1 = w802-15-4Interface
+
+Group21.groupID = s
+Group21.bufferSize = 64k
+Group21.movementModel = StationaryMovement
+Group21.nodeLocation = 10557,4397
+Group21.nrofHosts = 1
+Group21.nrofInterfaces = 1
+Group21.interface1 = w802-15-4Interface
+
+Group22.groupID = s
+Group22.bufferSize = 10M
+Group22.movementModel = StationaryMovement
+Group22.nodeLocation = 7060,4835
+Group22.nrofHosts = 1
+Group22.nrofInterfaces = 1
+#Group22.msgTtl = 300
+#Group23.interface1 = w802-15-4Interface
+Group22.interface1 = w802-11bInterface
+
+Group23.groupID = s
+Group23.bufferSize = 64k
+Group23.movementModel = StationaryMovement
+Group23.nodeLocation = 5800,4350
+Group23.nrofHosts = 1
+Group23.nrofInterfaces = 1
+Group23.interface1 = w802-15-4Interface
+
+Group24.groupID = s
+Group24.bufferSize = 64k
+Group24.movementModel = StationaryMovement
+Group24.nodeLocation = 6655,4357
+Group24.nrofHosts = 1
+Group24.nrofInterfaces = 1
+Group24.interface1 = w802-15-4Interface
+
+Group25.groupID = s
+Group25.bufferSize = 64k
+Group25.movementModel = StationaryMovement
+Group25.nodeLocation = 8075,4370
+Group25.nrofHosts = 1
+Group25.nrofInterfaces = 1
+Group25.interface1 = w802-15-4Interface
+
+Group26.groupID = s
+Group26.bufferSize = 64k
+Group26.movementModel = StationaryMovement
+Group26.nodeLocation = 8170,3785
+Group26.nrofHosts = 1
+Group26.nrofInterfaces = 1
+Group26.interface1 = w802-15-4Interface
+
+Group27.groupID = s
+Group27.bufferSize = 10M
+Group27.movementModel = StationaryMovement
+Group27.nodeLocation = 6047,2025
+Group27.nrofHosts = 1
+Group27.nrofInterfaces = 1
+#Group27.msgTtl = 300
+#Group28.interface1 = w802-15-4Interface
+Group27.interface1 = w802-11bInterface
+
+Group28.groupID = s
+Group28.bufferSize = 10M
+Group28.movementModel = StationaryMovement
+Group28.nodeLocation = 7056,2445
+Group28.nrofHosts = 1
+Group28.nrofInterfaces = 1
+#Group28.msgTtl = 300
+#Group29.interface1 = w802-15-4Interface
+Group28.interface1 = w802-11bInterface
+
+Group29.groupID = s
+Group29.bufferSize = 64k
+Group29.movementModel = StationaryMovement
+Group29.nodeLocation = 7585,1230
+Group29.nrofHosts = 1
+Group29.nrofInterfaces = 1
+Group29.interface1 = w802-15-4Interface
+
+Group30.groupID = s
+Group30.bufferSize = 64k
+Group30.movementModel = StationaryMovement
+Group30.nodeLocation = 8947,1620
+Group30.nrofHosts = 1
+Group30.nrofInterfaces = 1
+Group30.interface1 = w802-15-4Interface
+
+Group31.groupID = s
+Group31.bufferSize = 64k
+Group31.movementModel = StationaryMovement
+Group31.nodeLocation = 10737,1995
+Group31.nrofHosts = 1
+Group31.nrofInterfaces = 1
+Group31.interface1 = w802-15-4Interface
+
+Group32.groupID = s
+Group32.bufferSize = 64k
+Group32.movementModel = StationaryMovement
+Group32.nodeLocation = 12703,4403
+Group32.nrofHosts = 1
+Group32.nrofInterfaces = 1
+Group32.interface1 = w802-15-4Interface
+
+Group33.groupID = s
+Group33.bufferSize = 10M
+Group33.movementModel = StationaryMovement
+Group33.nodeLocation = 18580,1420
+Group33.nrofHosts = 1
+Group33.nrofInterfaces = 1
+#Group33.msgTtl = 300
+#Group34.interface1 = w802-15-4Interface
+Group33.interface1 = w802-11bInterface
+
+Group34.groupID = s
+Group34.bufferSize = 10M
+Group34.movementModel = StationaryMovement
+Group34.nodeLocation = 4370,9330
+Group34.nrofHosts = 1
+Group34.nrofInterfaces = 1
+#Group34.msgTtl = 300
+#Group35.interface1 = w802-15-4Interface
+Group34.interface1 = w802-11bInterface
+
+Group35.groupID = s
+Group35.bufferSize = 10M
+Group35.movementModel = StationaryMovement
+Group35.nodeLocation = 9670,6510
+Group35.nrofHosts = 1
+Group35.nrofInterfaces = 1
+#Group35.msgTtl = 300
+#Group36.interface1 = w802-15-4Interface
+Group35.interface1 = w802-11bInterface
+
+Group36.groupID = s
+Group36.bufferSize = 64k
+Group36.movementModel = StationaryMovement
+Group36.nodeLocation = 6240,820
+Group36.nrofHosts = 1
+Group36.nrofInterfaces = 1
+Group36.interface1 = w802-15-4Interface
+
+Group37.groupID = s
+Group37.bufferSize = 10M
+Group37.movementModel = StationaryMovement
+Group37.nodeLocation = 7870,3785
+Group37.nrofHosts = 1
+Group37.nrofInterfaces = 1
+#Group37.msgTtl = 300
+#Group38.interface1 = w802-15-4Interface
+Group37.interface1 = w802-11bInterface
+
+Group38.groupID = s
+Group38.bufferSize = 64k
+Group38.movementModel = StationaryMovement
+Group38.nodeLocation = 6030,6420
+Group38.nrofHosts = 1
+Group38.nrofInterfaces = 1
+Group38.interface1 = w802-15-4Interface
+
+Group39.groupID = s
+Group39.bufferSize = 10M
+Group39.movementModel = StationaryMovement
+Group39.nodeLocation = 4615,6375
+Group39.nrofHosts = 1
+Group39.nrofInterfaces = 1
+#Group39.msgTtl = 300
+#Group40.interface1 = w802-15-4Interface
+Group39.interface1 = w802-11bInterface
+
+Group40.groupID = s
+Group40.bufferSize = 64k
+Group40.movementModel = StationaryMovement
+Group40.nodeLocation = 1660,6235
+Group40.nrofHosts = 1
+Group40.nrofInterfaces = 1
+Group40.interface1 = w802-15-4Interface
+
+Group41.groupID = s
+Group41.bufferSize = 10M
+Group41.movementModel = StationaryMovement
+Group41.nodeLocation = 2115,6265
+Group41.nrofHosts = 1
+Group41.nrofInterfaces = 1
+#Group41.msgTtl = 300
+#Group42.interface1 = w802-15-4Interface
+Group41.interface1 = w802-11bInterface
+
+Group42.groupID = s
+Group42.bufferSize = 10M
+Group42.movementModel = StationaryMovement
+Group42.nodeLocation = 5850,3815
+Group42.nrofHosts = 1
+Group42.nrofInterfaces = 1
+#Group42.msgTtl = 300
+#Group43.interface1 = w802-15-4Interface
+Group42.interface1 = w802-11bInterface
+
+Group43.groupID = s
+Group43.bufferSize = 10M
+Group43.movementModel = StationaryMovement
+Group43.nodeLocation = 5105,4340
+Group43.nrofHosts = 1
+Group43.nrofInterfaces = 1
+#Group43.msgTtl = 300
+#Group44.interface1 = w802-15-4Interface
+Group43.interface1 = w802-11bInterface
+
+Group44.groupID = s
+Group44.bufferSize = 10M
+Group44.movementModel = StationaryMovement
+Group44.nodeLocation = 4205,4213
+Group44.nrofHosts = 1
+Group44.nrofInterfaces = 1
+#Group44.msgTtl = 300
+#Group45.interface1 = w802-15-4Interface
+Group44.interface1 = w802-11bInterface
+
+Group45.groupID = s
+Group45.bufferSize = 10M
+Group45.movementModel = StationaryMovement
+Group45.nodeLocation = 7080,6440
+Group45.nrofHosts = 1
+Group45.nrofInterfaces = 1
+#Group45.msgTtl = 300
+#Group46.interface1 = w802-15-4Interface
+Group45.interface1 = w802-11bInterface
+
+Group46.groupID = s
+Group46.bufferSize = 64k
+Group46.movementModel = StationaryMovement
+Group46.nodeLocation = 6580,10280
+Group46.nrofHosts = 1
+Group46.nrofInterfaces = 1
+Group46.interface1 = w802-15-4Interface
+
+#Group for Bus TransJogja - 117-34 nodes
+
+Group47.groupID = 1A_
+Group47.routeType = 1
+Group47.routeFile = data/Jalur1A.wkt
+Group47.nrofHosts = 15
+
+Group48.groupID = 1B_
+Group48.routeType = 1
+Group48.routeFile = data/Jalur1B.wkt
+Group48.nrofHosts = 9
+
+Group49.groupID = 2A_
+Group49.routeType = 1
+Group49.routeFile = data/Jalur2A.wkt
+Group49.nrofHosts = 10
+
+Group50.groupID = 2B_
+Group50.routeType = 1
+Group50.routeFile = data/Jalur2B.wkt
+Group50.nrofHosts = 10
+
+Group51.groupID = 3A_
+Group51.routeType = 1
+Group51.routeFile = data/Jalur3A.wkt
+Group51.nrofHosts = 11
+
+Group52.groupID = 3B_
+Group52.routeFile = data/Jalur3B.wkt
+Group52.routeType = 1
+Group52.nrofHosts = 11
+
+Group53.groupID = 4A_
+Group53.routeType = 1
+Group53.routeFile = data/Jalur4A.wkt
+Group53.nrofHosts = 5
+
+Group54.groupID = 4B_
+Group54.routeType = 1
+Group54.routeFile = data/Jalur4B.wkt
+Group54.nrofHosts = 6
+
+Group55.groupID = 5A_
+Group55.routeType = 1
+Group55.routeFile = data/Jalur5A.wkt
+Group55.nrofHosts = 4
+
+Group56.groupID = 5B_
+Group56.routeType = 1
+Group56.routeFile = data/Jalur5B.wkt
+Group56.nrofHosts = 4
+
+Group57.groupID = 6A_
+Group57.routeType = 1
+Group57.routeFile = data/Jalur6A.wkt
+Group57.nrofHosts = 4
+
+Group58.groupID = 6B_
+Group58.routeType = 1
+Group58.routeFile = data/Jalur6B.wkt
+Group58.nrofHosts = 4
+
+Group59.groupID = 7_
+Group59.routeType = 1
+Group59.routeFile = data/Jalur7.wkt
+Group59.nrofHosts = 3
+
+Group60.groupID = 8_
+Group60.routeType = 1
+Group60.routeFile = data/Jalur8.wkt
+Group60.nrofHosts = 5
+
+Group61.groupID = 9_
+Group61.routeType = 1
+Group61.routeFile = data/Jalur9.wkt
+Group61.nrofHosts = 6
+
+Group62.groupID = 10_
+Group62.routeType = 1
+Group62.routeFile = data/Jalur10.wkt
+Group62.nrofHosts = 6
+
+Group63.groupID = 11_
+Group63.routeType = 1
+Group63.routeFile = data/Jalur11.wkt
+Group63.nrofHosts = 4
+
+## Message creation parameters 
+# How many event generators
+Events.nrof = 1
+# Class of the first event generator
+Events1.class = MessageEventGenerator
+#Events1.class = ExternalEventsQueue
+#Events1.filePath = Book1.txt
+
+#Events2.class = ExternalEventsQueue
+#Events2.filePath = CreatedMessageLaluLintas1.txt
+
+# (following settings are specific for the MessageEventGenerator class)
+# Creation interval in seconds (one new message every 25 to 35 seconds)
+Events1.interval = 60, 300
+#Message sizes (500kB - 1MB)
+Events1.size = 50k,100k
+#Events1.size = 1M,1M
+# range of message source/destination addresses
+Events1.hosts = 8, 46
+#Events1.hosts = 0, 162
+ #Message ID prefix
+Events1.prefix = M
+Events1.toHosts = 0,0
+
+## Movement model settings
+# seed for movement models' pseudo random number generator (default = 0)
+MovementModel.rngSeed = 2
+# World's size for Movement Models without implicit size (width, height; meters)
+MovementModel.worldSize = 24000, 15000
+# How long time to move hosts in the world before real simulation
+MovementModel.warmup = 200
+
+## Map based movement -movement model specific settings
+MapBasedMovement.nrofMapFiles = 1
+
+MapBasedMovement.mapFile1 = data/JalurTJ.wkt
+
+## Reports - all report names have to be valid report classes
+
+# how many reports to load
+Report.nrofReports = 1
+# length of the warm up period (simulated seconds)
+Report.warmup = 200
+# default directory of reports (can be overridden per Report with output setting)
+Report.reportDir = reports/
+# Report classes to load
+Report.report1 = MessageStatsReport
+#Report.report1 = ReportBusPesanLalulintas
+#Report1.ToNodeID=L
+Report.report2 = MessageGetHop
+#Report2.ToNodeID=M
+
+Report.report3 = CreatedMessagesReport
+
+
+
+## Default settings for some routers settings
+ProphetRouter.secondsInTimeUnit = 30
+SprayAndWaitRouter.nrofCopies = 56
+SprayAndWaitRouter.binaryMode = true
+DecisionEngineRouter.nrofCopies = 56
+DecisionEngineRouter.binaryMode = true
+#SprayAndLocate.nrofCopies = 56
+#SprayAndWaitRouter.binaryMode = true
+
+## Optimization settings -- these affect the speed of the simulation
+## see World class for details.
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = true
+
+

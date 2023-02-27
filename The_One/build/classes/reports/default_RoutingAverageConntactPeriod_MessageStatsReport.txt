@@ -1,0 +1,20 @@
+Message stats for scenario default_RoutingAverageConntactPeriod
+sim_time: 43200.1000
+created: 1461
+started: 38135
+relayed: 17010
+aborted: 21125
+dropped: 1106
+removed: 17010
+delivered: 126
+delivery_prob: 0.0862
+response_prob: 0.0000
+overhead_ratio: 134.0000
+latency_avg: 4465.6563
+latency_med: 3571.3000
+hopcount_avg: 10.2698
+hopcount_med: 8
+buffertime_avg: 516.8024
+buffertime_med: 258.2000
+rtt_avg: NaN
+rtt_med: NaN

@@ -1,0 +1,11 @@
+Pesan L
+nrofCreated = 0
+nrofDropped = 0
+nrofRemoved = 0
+nrofStarted = 0
+nrofAborted = 0
+nrofRelayed = 0
+ndelivered = 0
+deliveryProb = 0.0000
+OverheadRatio = NaN
+averageLatency = NaNmedianLatency = NaNmaxLatency = 0.0minLatency = 0.0nhopcount_avg = NaNnhopcount_med= 0

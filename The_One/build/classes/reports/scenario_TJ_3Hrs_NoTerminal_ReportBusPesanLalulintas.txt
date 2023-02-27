@@ -1,0 +1,10 @@
+PesanL
+nrofCreated = 190
+nrofDropped = 27125
+nrofRemoved = 0
+nrofStarted = 37060
+nrofAborted = 0
+nrofRelayed = 37059
+ndelivered = 76
+deliveryProb = 0.4
+Latency = 2380.4855

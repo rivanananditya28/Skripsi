@@ -1,0 +1,17 @@
+Pesan L
+nrofCreated = 8968
+nrofDropped = 7713255
+nrofRemoved = 0
+nrofStarted = 7744170
+nrofAborted = 8958
+nrofRelayed = 7735198
+ndelivered = 4025
+deliveryProb = 0.4488
+OverheadRatio = 1920.7883
+averageLatency = 6788.9416
+medianLatency = 6080.9000
+maxLatency = 17991.799999627525
+minLatency = 555.8999999991029
+nhopcount_avg = 13.9448
+nhopcount_med= 12
+
